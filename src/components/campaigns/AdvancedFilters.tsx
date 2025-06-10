@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,12 +11,10 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { CalendarIcon, Filter, X, Save, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 interface FilterState {
-  dateRange: {
-    from: Date | undefined;
-    to: Date | undefined;
-  };
+  dateRange: DateRange | undefined;
   brands: string[];
   status: string[];
   roiRange: number[];
@@ -31,7 +28,7 @@ interface FilterState {
 export const AdvancedFilters = ({ onFiltersChange }: { onFiltersChange: (filters: FilterState) => void }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
-    dateRange: { from: undefined, to: undefined },
+    dateRange: undefined,
     brands: [],
     status: [],
     roiRange: [0, 1000],
@@ -53,7 +50,7 @@ export const AdvancedFilters = ({ onFiltersChange }: { onFiltersChange: (filters
 
   const clearAllFilters = () => {
     const clearedFilters: FilterState = {
-      dateRange: { from: undefined, to: undefined },
+      dateRange: undefined,
       brands: [],
       status: [],
       roiRange: [0, 1000],
@@ -83,7 +80,7 @@ export const AdvancedFilters = ({ onFiltersChange }: { onFiltersChange: (filters
 
   const getActiveFiltersCount = () => {
     let count = 0;
-    if (filters.dateRange.from || filters.dateRange.to) count++;
+    if (filters.dateRange?.from || filters.dateRange?.to) count++;
     if (filters.brands.length > 0) count++;
     if (filters.status.length > 0) count++;
     if (filters.roiRange[0] > 0 || filters.roiRange[1] < 1000) count++;
@@ -129,7 +126,7 @@ export const AdvancedFilters = ({ onFiltersChange }: { onFiltersChange: (filters
               <PopoverTrigger asChild>
                 <Button variant="outline" className="w-full justify-start text-left font-normal">
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {filters.dateRange.from ? (
+                  {filters.dateRange?.from ? (
                     filters.dateRange.to ? (
                       <>
                         {format(filters.dateRange.from, "dd/MM/yyyy")} -{" "}
@@ -147,9 +144,9 @@ export const AdvancedFilters = ({ onFiltersChange }: { onFiltersChange: (filters
                 <Calendar
                   initialFocus
                   mode="range"
-                  defaultMonth={filters.dateRange.from}
+                  defaultMonth={filters.dateRange?.from}
                   selected={filters.dateRange}
-                  onSelect={(range) => updateFilters({ dateRange: range || { from: undefined, to: undefined } })}
+                  onSelect={(range) => updateFilters({ dateRange: range })}
                   numberOfMonths={2}
                 />
               </PopoverContent>
