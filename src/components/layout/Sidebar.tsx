@@ -10,7 +10,8 @@ import {
   List, 
   Search,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  Zap
 } from "lucide-react";
 
 interface SidebarProps {
@@ -68,18 +69,20 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
 
   return (
     <div className={cn(
-      "fixed left-0 top-0 h-full bg-card border-r border-border transition-all duration-300 z-50",
+      "fixed left-0 top-0 h-full bg-card/90 backdrop-blur-xl border-r border-primary/20 transition-all duration-300 z-50 shadow-2xl",
       collapsed ? "w-16" : "w-64"
     )}>
-      {/* Logo */}
-      <div className="h-16 flex items-center justify-center border-b border-border bg-primary">
+      {/* Logo Control X */}
+      <div className="h-16 flex items-center justify-center border-b border-primary/20 control-x-gradient">
         {collapsed ? (
-          <div className="w-8 h-8 bg-primary-foreground rounded text-primary text-sm font-bold flex items-center justify-center">
-            TB
+          <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-bold flex items-center justify-center shadow-lg">
+            <Zap className="h-4 w-4" />
           </div>
         ) : (
-          <div className="text-primary-foreground font-bold text-lg">
-            TOP BRANDS ANGOLA
+          <div className="flex items-center space-x-2 text-white">
+            <Zap className="h-6 w-6" />
+            <span className="font-bold text-lg">Control</span>
+            <span className="font-bold text-lg bg-accent text-accent-foreground px-2 py-1 rounded-lg text-sm">X</span>
           </div>
         )}
       </div>
@@ -93,8 +96,8 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
                 <button
                   onClick={() => toggleSection(item.section!)}
                   className={cn(
-                    "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors",
-                    "hover:bg-accent hover:text-accent-foreground",
+                    "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    "hover:bg-primary/10 hover:text-primary hover:shadow-lg",
                     "text-muted-foreground"
                   )}
                 >
@@ -104,21 +107,21 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
                   </div>
                   {!collapsed && (
                     isExpanded(item.section!) ? 
-                      <ChevronDown className="h-4 w-4" /> : 
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4 text-accent" /> : 
+                      <ChevronRight className="h-4 w-4 text-primary" />
                   )}
                 </button>
                 {!collapsed && isExpanded(item.section!) && (
-                  <div className="ml-6 space-y-1">
+                  <div className="ml-6 space-y-1 animate-fade-in">
                     {item.children.map((child, childIndex) => (
                       <Link
                         key={childIndex}
                         to={child.path}
                         className={cn(
-                          "block px-3 py-2 rounded-lg text-sm transition-colors",
+                          "block px-3 py-2 rounded-lg text-sm transition-all duration-200",
                           isActive(child.path)
-                            ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                            ? "control-x-gradient text-white shadow-lg"
+                            : "text-muted-foreground hover:bg-accent/10 hover:text-accent hover:shadow-md"
                         )}
                       >
                         {child.title}
@@ -131,10 +134,10 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
               <Link
                 to={item.path}
                 className={cn(
-                  "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                  "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                   isActive(item.path)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    ? "control-x-gradient text-white shadow-lg animate-glow"
+                    : "text-muted-foreground hover:bg-primary/10 hover:text-primary hover:shadow-lg"
                 )}
               >
                 <item.icon className="h-4 w-4 mr-3" />

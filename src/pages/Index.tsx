@@ -13,7 +13,11 @@ import { Analytics } from "@/components/analytics/Analytics";
 import { BrandManagement } from "@/components/brands/BrandManagement";
 import { Settings } from "@/components/settings/Settings";
 
-const Index = () => {
+interface IndexProps {
+  onLogout: () => void;
+}
+
+const Index = ({ onLogout }: IndexProps) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
@@ -32,7 +36,7 @@ const Index = () => {
               <Route path="/orders" element={<OrdersList />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/brands" element={<BrandManagement />} />
-              <Route path="/settings" element={<Settings />} />
+              <Route path="/settings" element={<Settings onLogout={onLogout} />} />
             </Routes>
           </main>
         </div>
