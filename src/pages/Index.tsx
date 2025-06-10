@@ -1,16 +1,18 @@
 
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
-import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
+import { EnhancedDashboard } from "@/components/dashboard/EnhancedDashboard";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { CampaignsList } from "@/components/campaigns/CampaignsList";
+import { EnhancedCampaignsList } from "@/components/campaigns/EnhancedCampaignsList";
 import { CreateCampaign } from "@/components/campaigns/CreateCampaign";
+import { MessageTemplates } from "@/components/templates/MessageTemplates";
 import { ContactsList } from "@/components/contacts/ContactsList";
 import { ImportContacts } from "@/components/contacts/ImportContacts";
 import { OrdersList } from "@/components/orders/OrdersList";
 import { Analytics } from "@/components/analytics/Analytics";
 import { BrandManagement } from "@/components/brands/BrandManagement";
+import { TeamManagement } from "@/components/team/TeamManagement";
 import { Settings } from "@/components/settings/Settings";
 
 interface IndexProps {
@@ -28,14 +30,16 @@ const Index = ({ onLogout }: IndexProps) => {
           <Header onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} />
           <main className="p-6">
             <Routes>
-              <Route path="/" element={<DashboardOverview />} />
-              <Route path="/campaigns" element={<CampaignsList />} />
+              <Route path="/" element={<EnhancedDashboard />} />
+              <Route path="/campaigns" element={<EnhancedCampaignsList />} />
               <Route path="/campaigns/create" element={<CreateCampaign />} />
+              <Route path="/campaigns/templates" element={<MessageTemplates />} />
               <Route path="/contacts" element={<ContactsList />} />
               <Route path="/contacts/import" element={<ImportContacts />} />
               <Route path="/orders" element={<OrdersList />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/brands" element={<BrandManagement />} />
+              <Route path="/team" element={<TeamManagement />} />
               <Route path="/settings" element={<Settings onLogout={onLogout} />} />
             </Routes>
           </main>
