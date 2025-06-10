@@ -7,7 +7,11 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 
-export const Settings = () => {
+interface SettingsProps {
+  onLogout: () => void;
+}
+
+export const Settings = ({ onLogout }: SettingsProps) => {
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -199,6 +203,24 @@ export const Settings = () => {
             <div className="text-xs text-muted-foreground">
               Último backup: 15/01/2024 às 02:00
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Account Management */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Gestão de Conta</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between p-4 border border-destructive/20 rounded-lg bg-destructive/5">
+            <div>
+              <div className="font-medium text-destructive">Terminar Sessão</div>
+              <div className="text-sm text-muted-foreground">Sair da conta e voltar ao ecrã de login</div>
+            </div>
+            <Button variant="destructive" onClick={onLogout}>
+              Terminar Sessão
+            </Button>
           </div>
         </CardContent>
       </Card>
