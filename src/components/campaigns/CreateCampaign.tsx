@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Chevron-left, Chevron-right } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const CreateCampaign = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -118,8 +118,8 @@ export const CreateCampaign = () => {
               <Label>Filtros Adicionais</Label>
               <div className="flex flex-wrap gap-2 mt-2">
                 <Badge variant="outline">Luanda</Badge>
-                <Badge variant="outline">Última compra < 30 dias</Badge>
-                <Badge variant="outline">Valor > 10,000 AOA</Badge>
+                <Badge variant="outline">Última compra &lt; 30 dias</Badge>
+                <Badge variant="outline">Valor &gt; 10,000 AOA</Badge>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ export const CreateCampaign = () => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               />
               <div className="text-sm text-muted-foreground mt-2">
-                Use {{nome}}, {{marca}}, {{produto}} para personalização
+                Use {`{{nome}}, {{marca}}, {{produto}}`} para personalização
               </div>
             </div>
             <div className="border rounded-lg p-4 bg-muted">
@@ -230,7 +230,7 @@ export const CreateCampaign = () => {
       {/* Header */}
       <div className="flex items-center space-x-4">
         <Button variant="outline" size="sm">
-          <Chevron-left className="h-4 w-4 mr-2" />
+          <ChevronLeft className="h-4 w-4 mr-2" />
           Voltar
         </Button>
         <div>
@@ -282,14 +282,14 @@ export const CreateCampaign = () => {
       {/* Navigation */}
       <div className="flex justify-between">
         <Button variant="outline" onClick={prevStep} disabled={currentStep === 1}>
-          <Chevron-left className="h-4 w-4 mr-2" />
+          <ChevronLeft className="h-4 w-4 mr-2" />
           Anterior
         </Button>
         <div className="flex space-x-2">
           {currentStep < 5 ? (
             <Button onClick={nextStep}>
               Próximo
-              <Chevron-right className="h-4 w-4 ml-2" />
+              <ChevronRight className="h-4 w-4 ml-2" />
             </Button>
           ) : (
             <Button className="bg-primary hover:bg-primary/90">

@@ -9,8 +9,8 @@ import {
   Users, 
   List, 
   Search,
-  Chevron-down,
-  Chevron-right
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 
 interface SidebarProps {
@@ -104,8 +104,8 @@ export const Sidebar = ({ collapsed, onToggle }: SidebarProps) => {
                   </div>
                   {!collapsed && (
                     isExpanded(item.section!) ? 
-                      <Chevron-down className="h-4 w-4" /> : 
-                      <Chevron-right className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4" /> : 
+                      <ChevronRight className="h-4 w-4" />
                   )}
                 </button>
                 {!collapsed && isExpanded(item.section!) && (

@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Chevron-left, Calendar, Users } from "lucide-react";
+import { ChevronLeft, Calendar, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const ImportContacts = () => {
@@ -356,7 +356,7 @@ export const ImportContacts = () => {
       <div className="flex items-center space-x-4">
         <Link to="/contacts">
           <Button variant="outline" size="sm">
-            <Chevron-left className="h-4 w-4 mr-2" />
+            <ChevronLeft className="h-4 w-4 mr-2" />
             Voltar
           </Button>
         </Link>
