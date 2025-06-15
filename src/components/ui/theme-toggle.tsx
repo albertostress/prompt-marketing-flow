@@ -27,12 +27,12 @@ export const ThemeToggle = () => {
       variant="outline"
       size="sm"
       onClick={toggleTheme}
-      className="h-8 w-8 p-0 hover:bg-accent/20 border-primary/20"
+      className="h-8 w-8 p-0 hover:bg-muted border-border"
     >
       {theme === "dark" ? (
-        <Sun className="h-4 w-4 text-accent" />
+        <Sun className="h-4 w-4 text-muted-foreground" />
       ) : (
-        <Moon className="h-4 w-4 text-primary" />
+        <Moon className="h-4 w-4 text-muted-foreground" />
       )}
     </Button>
   );
